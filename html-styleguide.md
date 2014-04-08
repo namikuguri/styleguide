@@ -8,6 +8,7 @@
     3. TODO コメント
 2. [書式ルール](#format-rule)
     1. インデントや改行箇所
+    2. 大文字/小文字
 3. [コーディングルール](#coding-rule)
     1. ドキュメントタイプ
     2. 基本的な構造
@@ -99,6 +100,30 @@ UTF-8 を使う。
 
 <!-- OK -->
 <p>てきすとてきすと<a href="">リンク</a>てきすとてきすと</p>
+```
+
+## 大文字/小文字
+HTML の要素、ID やクラス名は小文字のみで行おう。  
+コメントには大文字を使ってもいいけど、使うなら頭文字だけ大文字にするとか、とにかく一貫させて使うことが大事。
+
+```html
+/* NG */
+<!-- start / Layout -->
+  <div class="LAYOUT"> ... </div>
+<!-- end / Layout -->
+
+<!-- start / module -->
+  <DIV CLASS="module"> ... </DIV>
+<!-- end / module -->
+
+/* OK */
+<!-- start / Layout -->
+  <div class="layout"> ... </div>
+<!-- end / Layout -->
+
+<!-- start / Module -->
+  <div class="module"> ... </div>
+<!-- end / Module -->
 ```
 
 <a name="coding-rule"></a>
