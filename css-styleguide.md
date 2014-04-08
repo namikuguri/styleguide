@@ -8,9 +8,10 @@
     3. TODO コメント
 2. [書式ルール](#format-rule)
     1. 一般的な書式
-    2. 「0」のときの単位の省略
-    3. 小数点の頭の「0」の省略
-    4. URI 値の引用符の省略
+    2. 大文字/小文字
+    3. 「0」のときの単位の省略
+    4. 小数点の頭の「0」の省略
+    5. URI 値の引用符の省略
 3. [コーディングルール](#coding-rule)
     1. ディレクトリ構成
     2. プロパティの列挙順
@@ -30,20 +31,28 @@
 UTF-8 を使う。
 
 ```css
-@charset "UTF-8";
+@charset "utf-8";
 ```
 
 ### コメント
 普通のコメントは普通に、 `/* */` 形式で書こう。  
-コメントはできるだけ一行で収まるように、コメントを入れ過ぎないようにしよう（コメントがないとモジュールの意味がわからないとかはモジュールの作り自体がよくない）。
+`/* start - { name } */` でコメント開始箇所、 `/* end - { name } */` で終了箇所を書く。コメントを書く場合は必ず両方書こうね。
 
 ```css
-/* NG */
-/* blog article */
-.article {
+/* start - layout */
+.layout {
   ...
 }
+/* end - layout */
+
+/* start - module */
+.module {
+  ...
+}
+/* end - module */
 ```
+
+コメントはできるだけ一行で収まるように、コメントを入れ過ぎないようにしよう（コメントがないとモジュールの意味がわからないとかはモジュールの作り自体がよくない）。
 
 ### TODO: コメント
 こんな感じ:
@@ -76,6 +85,38 @@ UTF-8 を使う。
 .module-bordered {
   border: 1px solid #ccc;
 }
+```
+
+## 大文字/小文字
+CSS のプロパティ、ID やクラス名は小文字のみで行おう。  
+コメントには大文字を使ってもいいけど、使うなら頭文字だけ大文字にするとか、とにかく一貫させて使うことが大事。
+
+```html
+/* NG */
+/* start - Layout */
+.LAYOUT {
+  background-color: #fff;
+}
+/* end - Layout */
+
+/* start - module */
+.module {
+  MARGIN: 0 AUTO;
+}
+/* end - module */
+
+/* OK */
+/* start - Layout */
+.layout {
+  background-color: #fff;
+}
+/* end - Layout */
+
+/* start - Module */
+.module {
+  margin: 0 auto;
+}
+/* end - Module */
 ```
 
 ### 「0」のときの単位の省略
