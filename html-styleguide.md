@@ -1,4 +1,6 @@
 # HTML Styleguide
+文書構造に関する HTML の決まり事。
+
 ## 目次
 1. [メタルール](#meta-rule)
     1. エンコード
