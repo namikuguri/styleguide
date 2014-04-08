@@ -1,4 +1,6 @@
 # Common Styleguide
+HTML と CSS 、Javascript すべてで共通する決まり事。
+
 ## 目次
 1. [小文字のみを使おう](#use-small-character)
 2. [無駄なスペースは削除](#delete-space)
