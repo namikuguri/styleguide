@@ -54,7 +54,7 @@ UTF-8 を使う。
 <!-- end / header -->
 
 <!-- start / estimate form -->
-<%= form_for(@estimate, :html => {:class => 'basic_form', :multipart => true}) do |f| %>
+<%= form_for(@estimate, :html => {:class => 'basic-form', :multipart => true}) do |f| %>
   ...
 <% end / %>
 <!-- end / estimate form -->
