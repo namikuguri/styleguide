@@ -3,32 +3,36 @@
 
 ## 目次
 1. [メタルール](#meta-rule)
-    1. エンコード
-    2. コメント
-    3. TODO コメント
+    1. [エンコード](#meta-rule-encode)
+    2. [コメント](#meta-rule-comment)
+    3. [TODO コメント](#meta-rule-comment-todo)
 2. [書式ルール](#format-rule)
-    1. 一般的な書式
-    2. 大文字/小文字
-    3. 「0」のときの単位の省略
-    4. 小数点の頭の「0」の省略
-    5. URI 値の引用符の省略
+    1. [一般的な書式](#format-rule-general)
+    2. [階層にインデントをつけない](#format-rule-indent)
+    3. [大文字/小文字](#format-rule-charactor)
+    4. [「0」のときの単位の省略](#format-rule-omission-of-unit)
+    5. [小数点の頭の「0」の省略](#format-rule-omission-of-decimal-point)
+    6. [URI 値の引用符の省略](#format-rule-quotation-of-uri)
 3. [コーディングルール](#coding-rule)
-    1. ディレクトリ構成
-    2. プロパティの列挙順
-    3. ベンダープレフィックス
-    4. カラーコード
-    5. px か em か
-    6. セレクタ
-    7. ショートハンドプロパティ
-    8. CSS ハック
-    9. 余計なモジュールの構造化は避ける
-    10. CSS のバリデート
+    1. [ディレクトリ構成](#coding-rule-directory-structure)
+    2. [プロパティの列挙順](#coding-rule-property-order)
+    3. [ベンダープレフィックス](#coding-rule-vendor-prefix)
+    4. [カラーコード](#coding-rule-color-code)
+    5. [カラーコードの短縮](#coding-rule-color-code-shortening)
+    6. [px か em か](#coding-rule-px-vs-em)
+    7. [セレクタ](#coding-rule-selector)
+    8. [ショートハンドプロパティ](#coding-rule-shorthand)
+    9. [CSS ハック](#coding-rule-css-hack)
+    10. [余計なモジュールの構造化は避ける](#coding-rule-appropriate-structuring)
+    11. [CSS のバリデート](#coding-rule-validation)
 4. [スタイルのプレビュー](#style-preview)
 5. [[ オプション ] プリプロセッサ](#use-preprocessor)
 6. [参考文献](#reference)
 
 <a name="meta-rule"></a>
 ## 1. メタルール
+
+<a name="meta-rule-encode"></a>
 ### エンコード
 UTF-8 を使う。
 
@@ -36,13 +40,22 @@ UTF-8 を使う。
 @charset "utf-8";
 ```
 
+<a name="meta-rule-comment"></a>
 ### コメント
 普通のコメントは普通に、 `/* */` 形式で書こう。  
 `/* start - { name } */` でコメント開始箇所、 `/* end - { name } */` で終了箇所を書く。コメントを書く場合は必ず両方書こうね。
 
 ```css
 /* start - layout */
-.layout {
+.header {
+  ...
+}
+
+.main {
+  ...
+}
+
+.footer {
   ...
 }
 /* end - layout */
@@ -51,11 +64,20 @@ UTF-8 を使う。
 .module {
   ...
 }
+
+.module-bordered {
+  ...
+}
+
+.module-full-width {
+  ...
+}
 /* end - module */
 ```
 
 コメントはできるだけ一行で収まるように、コメントを入れ過ぎないようにしよう（コメントがないとモジュールの意味がわからないとかはモジュールの作り自体がよくない）。
 
+<a name="meta-rule-comment-todo"></a>
 ### TODO: コメント
 こんな感じ:
 
@@ -67,8 +89,11 @@ UTF-8 を使う。
 
 <a name="format-rule"></a>
 ## 2. 書式ルール
+
+<a name="format-rule-general"></a>
 ### 一般的な書式
-- プロパティの前にはスペース2つでインデント
+- プロパティの前には半角スペース2つでインデント
+- シングルクォーテーション ( `'` ) ではなくダブルクォーテーション ( `"` ) を使います
 - `:` の前にはスペースを1つ
 - `{` の前にはスペースを1つ
 - `{` の後は改行
@@ -89,38 +114,72 @@ UTF-8 を使う。
 }
 ```
 
-## 大文字/小文字
+<a name="format-rule-indent"></a>
+### 階層にインデントをつけない
+CSS では階層に対してのインデントをしない。  
+セレクタの指定で十分わかると思うからね。
+
+```css
+/* NG */
+.list {
+  ...
+}
+
+  .list li {
+    ...
+  }
+
+    .list li .list-note {
+      ...
+    }
+
+/* OK */
+.list {
+  ...
+}
+
+.list li {
+  ...
+}
+
+.list li .list-note {
+  ...
+}
+```
+
+<a name="format-rule-charactor"></a>
+### 大文字/小文字
 CSS のプロパティ、ID やクラス名は小文字のみで行おう。  
-コメントには大文字を使ってもいいけど、使うなら頭文字だけ大文字にするとか、とにかく一貫させて使うことが大事。
+コメントには大文字を使ってもいいよ。
 
 ```html
 /* NG */
-/* start - Layout */
 .LAYOUT {
   background-color: #fff;
 }
-/* end - Layout */
 
-/* start - module */
 .module {
   MARGIN: 0 AUTO;
 }
-/* end - module */
 
 /* OK */
-/* start - Layout */
 .layout {
   background-color: #fff;
 }
-/* end - Layout */
 
-/* start - Module */
 .module {
   margin: 0 auto;
 }
 /* end - Module */
+
+/* start - RSS Feed */
+.rss-feed {
+  margin: 0 auto;
+}
+/* end - RSS Feed */
 ```
 
+<a name="format-rule-omission-of-unit"></a>
 ### 「0」のときの単位の省略
 「0」のときは単位を省略して書こう:
 
@@ -132,6 +191,7 @@ CSS のプロパティ、ID やクラス名は小文字のみで行おう。
 }
 ```
 
+<a name="format-rule-omission-of-decimal-point"></a>
 ### 小数点の頭の「0」の省略
 小数点の頭の「0」は省略して書こう:
 
@@ -143,6 +203,7 @@ CSS のプロパティ、ID やクラス名は小文字のみで行おう。
 }
 ```
 
+<a name="format-rule-quotation-of-uri"></a>
 ### URI 値の引用符の省略
 URI 値の引用符は省略していいよ:
 
@@ -155,6 +216,8 @@ URI 値の引用符は省略していいよ:
 
 <a name="coding-rule"></a>
 ## 3. コーディングルール
+
+<a name="coding-rule-directory-structure"></a>
 ### ディレクトリ構成
 SMACSS カテゴリーで分けてつくろう。
 
@@ -218,6 +281,7 @@ SMACSS について詳細が知りたい場合は本が出てるからそれ見�
 
 - [SMACSS 読んだ](http://chroma.hatenablog.com/entry/2013/07/22/120818)
 
+<a name="coding-rule-property-order"></a>
 ### プロパティの列挙順
 このようなグループで分けて書こう:
 
@@ -231,6 +295,7 @@ SMACSS について詳細が知りたい場合は本が出てるからそれ見�
 
 プロジェクトごとにプロパティの列挙順一覧を作成しておこう。
 
+<a name="coding-rule-vendor-prefix"></a>
 ### ベンダープレフィックス
 以下の順序で書こう:
 
@@ -242,18 +307,11 @@ SMACSS について詳細が知りたい場合は本が出てるからそれ見�
 
 ブラウザのアップデートにより、ベンダープレフィックスのサポートが不要になったものは順次消していこう。
 
+<a name="coding-rule-color-code"></a>
 ### カラーコード
-透過以外は HEX 形式で、透過が伴うものはは RGBA 形式で指定する。  
-カラーコードが3文字で表記できるものは 3文字で指定しよう。
+透過以外は HEX 形式で、透過が伴うものは RGBA 形式で指定する。  
 
-```
-/* NG */
-.module {
-  color: #000000;
-  background-color: #ffffff;
-}
-
-/* OK */
+```css
 .module {
   color: #000;
   background-color: #fff;
@@ -264,12 +322,37 @@ SMACSS について詳細が知りたい場合は本が出てるからそれ見�
 これは備考だけど、IE8 以下の対応を考えてるなら CSS3 から追加された RGBA, HSLA 形式は使わないほうがいい。サポートされてないからね。  
 Sass なんかを使ってる場合はコンパイル時に HEX 形式に変換するといいよ。
 
+<a name="coding-rule-color-code-shortening"></a>
+### カラーコードの短縮
+カラーコードが 3文字で短縮して表記できるものは 3文字で指定しよう。
+`#XXYYZZ` ( 例: #2200AA ) 形式のものは短縮して表記できるよ。
+
+```css
+/* NG */
+.module {
+  color: #110011;
+  background-color: #eeeeee;
+}
+
+/* OK */
+.module {
+  color: #101;
+  background-color: #eee;
+}
+```
+
+一応 Web にあったリストのリンクも載せておくね。
+
+- [#RGB スタイルシート専用 3桁カラーコード](http://www.ne.jp/asahi/mitoro/page/color_code.htm)
+
+<a name="coding-rule-px-vs-em"></a>
 ### px か em か
 本当は `em` 使ったほうがいいかもしれないけど、今はまだ `px` 使おう。  
 僕にはまだ `em` を使ってちゃんとプロダクトを組み上げる自身がないんだ。
 
 `rem` という手段も検討してみよう。
 
+<a name="coding-rule-selector"></a>
 ### セレクタ
 ユニバーサルセレクタ ( `*` ) は使用してはいけない。適用範囲が把握しにくいことや全てを走査して適用していくのでパフォーマンスが落ちるからね:
 
@@ -304,6 +387,7 @@ p.message {
 }
 ```
 
+<a name="coding-rule-shorthand"></a>
 ### ショートハンドプロパティ
 あまり使わないようにしよう。指定が読み取りにくいことや余計な打ち消しをすることがあるからね。  
 例外は `margin` や `padding` などで複数箇所の指定をするとき、`border` の指定をするときくらいかな。
@@ -340,6 +424,7 @@ p.message {
 }
 ```
 
+<a name="coding-rule"></a>
 ### ネストの上限
 ネストは3階層以下に収めるようにする。
 
@@ -373,9 +458,11 @@ p.message {
 }
 ```
 
+<a name="coding-rule-css-hack"></a>
 ### CSS ハック
 使ってはいけない。
 
+<a name="coding-rule-appropriate-structuring"></a>
 ### 余計なモジュールの構造化は避ける
 余計なモジュール化は避けよう。
 親要素に子要素が紐付いているリストやテーブルには、子要素に対してモジュール構造を持たせる必要はない。
@@ -466,6 +553,7 @@ p.message {
 </table>
 ```
 
+<a name="coding-rule-validation"></a>
 ### CSS のバリデート
 すべてが終わった時ではなくて、一部が完成したタイミング、もしくはあなたが書いているコードを常に監視して CSS コードの検証を行おう。コードが書き終わってから「found 27 errors and 217 warnings.」とか出るのが恐いからね。
 
@@ -544,8 +632,6 @@ h4 {
 
 <a name="use-preprocessor"></a>
 ## 5. [ オプション ] プリプロセッサ
-これはやらなくてもいいけど、やったほうがいいこと。
-
 Sass(SCSS) を使うよ。  
 `Mixin` や `Partial` といった便利な機能があるからね。
 

@@ -6,15 +6,15 @@ HTML と CSS 、Javascript に共通する決まり事。
 2. [URI 値のプロトコルの省略](#omission-of-protocol)
 3. [ID かクラスか](#id-vs-class)
 4. [ID やクラスの命名](#naming)
-    1. 意味のわかる名前をつける
-    2. ID とクラスの命名スタイル
-    3. 単語の省略
+    1. [意味のわかる名前をつける](#naming-semantic)
+    2. [ID とクラスの命名スタイル](#naming-id-vs-class)
+    3. [単語の省略](#naming-shortening)
 5. [[ オプション ] Grunt 、タスクの簡略化](#simplification-of-task)
 6. [参考文献](#reference)
 
 <a name="delete-space"></a>
 ## 1. 無駄なスペースは削除
-行末など残ったスペースは削除しておこう。
+行末などに残ったスペースは削除しておこう。
 
 （ `_` をスペースとみたてて）:
 
@@ -63,6 +63,8 @@ CSS の場合:
 
 <a name="naming"></a>
 ## 4. ID やクラスの命名
+
+<a name="naming-semantic"></a>
 ### 意味のわかる名前をつける
 コンポーネントの意味がわかる名前で書く。  
 連番や見た目を表した名前は使用してはいけない。
@@ -100,8 +102,9 @@ CSS の場合:
 }
 ```
 
+<a name="naming-id-vs-class"></a>
 ### ID とクラスの命名スタイル
-単語が複数ある場合はアンダースコア ( `_` ) で単語をつないで書こう。  
+単語が複数ある場合はハイフン( `-` ) で単語をつないで書こう。  
 単語が複数ある場合は必ず切り離して。例外は HTML の要素名になってるものとか、それが一般的な場合かな。
 
 ```css
@@ -110,7 +113,7 @@ CSS の場合:
 }
 
 /* OK */
-.header_item {
+.header-item {
   ...
 }
 
@@ -135,6 +138,7 @@ BEM について詳細が知りたい場合は公式サイトを読むのが一�
 - [Japanese Translations of BEM-Methodology](https://github.com/juno/bem-methodology-ja)
 - [BEMという命名規則とSass 3.3の新しい記法](http://blog.ruedap.com/2013/10/29/block-element-modifier)
 
+<a name="naming-shortening"></a>
 ### 単語の省略
 複数単語が連なる際、それらを省略しようとしてはいけないよ。
 

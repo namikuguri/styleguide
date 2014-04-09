@@ -3,31 +3,34 @@
 
 ## 目次
 1. [メタルール](#meta-rule)
-    1. エンコード
-    2. コメント
-    3. TODO コメント
+    1. [エンコード](#meta-rule-encode)
+    2. [コメント](#meta-rule-comment)
+    3. [TODO コメント](#meta-rule-comment-todo)
 2. [書式ルール](#format-rule)
-    1. インデントや改行箇所
-    2. 大文字/小文字
+    1. [一般的な書式](#format-rule-general)
+    2. [インデントや改行箇所](#format-rule-indent)
+    3. [大文字/小文字](#format-rule-charactor)
 3. [コーディングルール](#coding-rule)
-    1. ドキュメントタイプ
-    2. 基本的な構造
-    3. ルート要素
-    4. 外部リソースを読み込む際の type 属性
-    5. role 属性
-    6. セマンティックに書く
-    7. インラインスタイル
-    8. HTML 要素によるスタイリング
-    9. マルチメディアの代替コンテンツ
-    10. タグの省略をしない
-    11. フォームの cols , rows 属性
-    12. アウトライン
-    13. HTML のバリデート
+    1. [ドキュメントタイプ](#coding-rule-doctype)
+    2. [基本的な構造](#coding-rule-base-structure)
+    3. [ルート要素](#coding-rule-root-element)
+    4. [外部リソースを読み込む際の type 属性](#coding-rule-type-attribute)
+    5. [role 属性](#coding-rule-role-attribute)
+    6. [セマンティックに書く](#coding-rule-semantic)
+    7. [インラインスタイル](#coding-rule-inline-styling)
+    8. [HTML 要素によるスタイリング](#coding-rule-element-styling)
+    9. [マルチメディアの代替コンテンツ](#coding-rule-alternate-content)
+    10. [タグの省略をしない](#coding-rule-omission-of-tag)
+    11. [フォームの cols , rows 属性](#coding-rule-form)
+    12. [アウトライン](#coding-rule-outline)
+    13. [HTML のバリデート](#coding-rule-validation)
 4. [[ オプション ] プリプロセッサ](#use-preprocessor)
 5. [参考文献](#reference)
 
 <a name="meta-rule"></a>
 ## 1. メタルール
+
+<a name="meta-rule-encode"></a>
 ### エンコード
 UTF-8 を使う。
 
@@ -35,8 +38,10 @@ UTF-8 を使う。
 <meta charset="utf-8">
 ```
 
+<a name="meta-rule-comment"></a>
 ### コメント
-`<!-- start / { name } -->` でコメント開始箇所、 `<!-- end / { name } -->` で終了箇所を書く。コメントを書く場合は必ず両方書こうね。
+`<!-- start / { name } -->` でコメント開始箇所、 `<!-- end / { name } -->` で終了箇所を書く。コメントを書く場合は必ず両方書こうね。  
+コメントの下はインデントをいれる必要はないよ。
 
 ```html
 <!-- start / header -->
@@ -50,16 +55,17 @@ UTF-8 を使う。
 
 ```html
 <!-- start / header -->
-  {{include file="header.tpl"}}
+{{include file="header.tpl"}}
 <!-- end / header -->
 
 <!-- start / estimate form -->
-<%= form_for(@estimate, :html => {:class => 'basic_form', :multipart => true}) do |f| %>
+<%= form_for(@estimate, :html => {:class => 'basic-form', :multipart => true}) do |f| %>
   ...
 <% end / %>
 <!-- end / estimate form -->
 ```
 
+<a name="meta-rule-comment-todo"></a>
 ### TODO コメント
 こんな感じ:
 
@@ -69,6 +75,13 @@ UTF-8 を使う。
 
 <a name="format-rule"></a>
 ## 2. 書式ルール
+
+<a name="format-rule-general"></a>
+### 一般的な書式
+- インデントは半角スペース2つで行います
+- シングルクォーテーション ( `'` ) ではなくダブルクォーテーション ( `"` ) を使います
+
+<a name="format-rule-indent"></a>
 ### インデントや改行箇所
 ブロック要素・リスト要素・テーブル要素は改行してから記述し、これらの子要素にはインデントを入れる。
 
@@ -103,33 +116,29 @@ UTF-8 を使う。
 <p>てきすとてきすと<a href="">リンク</a>てきすとてきすと</p>
 ```
 
-## 大文字/小文字
+<a name="format-rule-charactor"></a>
+### 大文字/小文字
 HTML の要素、ID やクラス名は小文字のみで行おう。  
-コメントには大文字を使ってもいいけど、使うなら頭文字だけ大文字にするとか、とにかく一貫させて使うことが大事。
+コメントには大文字を使ってもいいよ。
 
 ```html
 /* NG */
-<!-- start / Layout -->
-  <div class="LAYOUT"> ... </div>
-<!-- end / Layout -->
-
-<!-- start / module -->
-  <DIV CLASS="module"> ... </DIV>
-<!-- end / module -->
+<div class="LAYOUT"> ... </div>
+<DIV CLASS="module"> ... </DIV>
 
 /* OK */
-<!-- start / Layout -->
-  <div class="layout"> ... </div>
-<!-- end / Layout -->
+<div class="layout"> ... </div>
+<div class="module"> ... </div>
 
-<!-- start / Module -->
-  <div class="module"> ... </div>
-<!-- end / Module -->
+<!-- start / RSS Feed -->
+<div class="rss-feed"> ... </div>
+<!-- end / RSS Feed -->
 ```
 
 <a name="coding-rule"></a>
 ## 3. コーディングルール
 
+<a name="coding-rule-doctype"></a>
 ### ドキュメントタイプ
 HTML5 でいこう。
 
@@ -137,6 +146,7 @@ HTML5 でいこう。
 <!DOCTYPE html>
 ```
 
+<a name="coding-rule-base-structure"></a>
 ### 基本的な構造
 `html` 以下の `head` , `body` にもインデントを取ろう。  
 `main` 要素さん、こんにちは。
@@ -181,6 +191,7 @@ HTML5 でいこう。
 </html>
 ```
 
+<a name="coding-rule-root-element"></a>
 ### ルート要素
 HTML ページではルート要素は `<html>` だよね。
 このルート要素には言語コードを指定しておこう。
@@ -193,6 +204,7 @@ HTML ページではルート要素は `<html>` だよね。
 </html>
 ```
 
+<a name="coding-rule-type-attribute"></a>
 ### 外部リソースを読み込む際の type 属性
 CSS と JavaScript の `type` 属性は省略する。HTML5 ではデフォルトの言語として解釈されるからね。
 
@@ -206,6 +218,7 @@ CSS と JavaScript の `type` 属性は省略する。HTML5 ではデフォル�
 <script src="javascripts/jquery.min.js"></script>
 ```
 
+<a name="coding-rule-role-attribute"></a>
 ### role 属性
 HTML5 のセマンティクスを補うために `role` 属性を使ってそれぞれに役割を明確にしよう。
 
@@ -217,6 +230,7 @@ HTML5 のセマンティクスを補うために `role` 属性を使ってそれ
 </main>
 ```
 
+<a name="coding-rule-semantic"></a>
 ### セマンティックに書く
 見出しは `<h1>` ~ `<h6>` 要素、段落なら `<p>` 要素、順序付きリストなら `<ol>` 要素、コンテンツの意味に適した要素を使うようにしよう。
 
@@ -243,6 +257,7 @@ HTML5 のセマンティクスを補うために `role` 属性を使ってそれ
 - [HTML5 タグリファレンス](http://reference.hyper-text.org/html5/)
 - [HTML5.jp](http://html5.jp/)
 
+<a name="coding-rule-inline-styling"></a>
 ### インラインスタイル
 要素に当てる `style` 属性は使ってはいけない。
 理由はスタイルの適用箇所が CSS ファイルと HTML ファイルにあったらどちらにあるか分かり難くなるから.. とか、まぁいろいろね:
@@ -252,6 +267,7 @@ HTML5 のセマンティクスを補うために `role` 属性を使ってそれ
 <p style="color: red">赤い文字</p>
 ```
 
+<a name="coding-rule-element-styling"></a>
 ### HTML 要素によるスタイリング
 スタイリング目的で要素を決めるのはもういい加減やめよう。
 
@@ -262,6 +278,7 @@ HTML5 のセマンティクスを補うために `role` 属性を使ってそれ
 - 連続した `<br>`
 - スタイルを整えるための `<br>`
 
+<a name="coding-rule-alternate-content"></a>
 ### マルチメディアの代替コンテンツ
 画像が表示されない場合、音声で読み上げられる場合を考えて `<img>` には `alt` 属性を指定しておこう。  
 `alt` に画像内の文章をすべて書けというわけではないけれど、「何の画像か？」というのが分かる程度には書こう。  
@@ -276,9 +293,11 @@ HTML5 のセマンティクスを補うために `role` 属性を使ってそれ
 <img src="picture-mainview.png" alt="">
 ```
 
+<a name="coding-rule-omission-of-tag"></a>
 ### タグの省略をしない
 `li`, `dt`, `dd`, `p`, `tr`, `th`, `td`, `rt`, `rp`, `optgroup`, `option`, `thread`, `tfoot` で終了タグの省略は行わない。
 
+<a name="coding-rule-form"></a>
 ### フォームの cols , rows 属性
 `input` 要素、 `textarea` 要素の幅・高さの指定を `cols` 属性や `rows` 属性では行わない。それぞれにクラスを振って `width` や `hight` プロパティの指定で行おう。
 
@@ -292,6 +311,7 @@ HTML5 のセマンティクスを補うために `role` 属性を使ってそれ
 <textarea id="" name="" class="textarea-note"></textarea>
 ```
 
+<a name="coding-rule-outline"></a>
 ### アウトライン
 アウトラインを綺麗に保って機械（検索エンジン）にページを正しく解釈してもらおう。  
 そのためにはアウトライン形成に関係する `section` 要素や `h1` ~ `h6` 要素などを理解して適切に使うことが必要だね。  
@@ -303,6 +323,7 @@ HTML5 のセマンティクスを補うために `role` 属性を使ってそれ
 - [HTML5 Outliner ( Chrome  extension )](https://chrome.google.com/webstore/detail/html5-outliner/afoibpobokebhgfnknfndkgemglggomo)
 - [HTML5 Outliner ( Firefox add-on )](https://addons.mozilla.org/en-US/firefox/addon/html5_outliner/)
 
+<a name="coding-rule-validation"></a>
 ### HTML のバリデート
 すべてが終わった時ではなくて、一部が完成したタイミング、もしくはあなたが書いているコードを常に監視して HTML コードの検証を行おう。コードが書き終わってから「Result: 27 Errors, 25 warning(s)」とか出るのが恐いからね。
 
@@ -314,8 +335,6 @@ Error は基本的に 0 に、warnings は.. まぁできるだけ減そう。
 
 <a name="use-preprocessor"></a>
 ## 4. [ オプション ] プリプロセッサ
-これはやらなくてもいいけど、やったほうがいいこと。
-
 Slim を使うよ。  
 面倒な山カッコ（ `<` , `>` ）を書かなくて済むからね。
 
