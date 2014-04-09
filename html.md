@@ -36,7 +36,8 @@ UTF-8 を使う。
 ```
 
 ### コメント
-`<!-- start / { name } -->` でコメント開始箇所、 `<!-- end / { name } -->` で終了箇所を書く。コメントを書く場合は必ず両方書こうね。
+`<!-- start / { name } -->` でコメント開始箇所、 `<!-- end / { name } -->` で終了箇所を書く。コメントを書く場合は必ず両方書こうね。  
+コメントの下はインデントをいれる必要はないよ。
 
 ```html
 <!-- start / header -->
@@ -50,7 +51,7 @@ UTF-8 を使う。
 
 ```html
 <!-- start / header -->
-  {{include file="header.tpl"}}
+{{include file="header.tpl"}}
 <!-- end / header -->
 
 <!-- start / estimate form -->
@@ -105,26 +106,20 @@ UTF-8 を使う。
 
 ## 大文字/小文字
 HTML の要素、ID やクラス名は小文字のみで行おう。  
-コメントには大文字を使ってもいいけど、使うなら頭文字だけ大文字にするとか、とにかく一貫させて使うことが大事。
+コメントには大文字を使ってもいいよ。
 
 ```html
 /* NG */
-<!-- start / Layout -->
-  <div class="LAYOUT"> ... </div>
-<!-- end / Layout -->
-
-<!-- start / module -->
-  <DIV CLASS="module"> ... </DIV>
-<!-- end / module -->
+<div class="LAYOUT"> ... </div>
+<DIV CLASS="module"> ... </DIV>
 
 /* OK */
-<!-- start / Layout -->
-  <div class="layout"> ... </div>
-<!-- end / Layout -->
+<div class="layout"> ... </div>
+<div class="module"> ... </div>
 
-<!-- start / Module -->
-  <div class="module"> ... </div>
-<!-- end / Module -->
+<!-- start / RSS Feed -->
+<div class="rss-feed"> ... </div>
+<!-- end / RSS Feed -->
 ```
 
 <a name="coding-rule"></a>

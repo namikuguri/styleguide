@@ -42,13 +42,29 @@ UTF-8 を使う。
 
 ```css
 /* start - layout */
-.layout {
+.header {
+  ...
+}
+
+.main {
+  ...
+}
+
+.footer {
   ...
 }
 /* end - layout */
 
 /* start - module */
 .module {
+  ...
+}
+
+.module-bordered {
+  ...
+}
+
+.module-full-width {
   ...
 }
 /* end - module */
@@ -91,34 +107,33 @@ UTF-8 を使う。
 
 ## 大文字/小文字
 CSS のプロパティ、ID やクラス名は小文字のみで行おう。  
-コメントには大文字を使ってもいいけど、使うなら頭文字だけ大文字にするとか、とにかく一貫させて使うことが大事。
+コメントには大文字を使ってもいいよ。
 
 ```html
 /* NG */
-/* start - Layout */
 .LAYOUT {
   background-color: #fff;
 }
-/* end - Layout */
 
-/* start - module */
 .module {
   MARGIN: 0 AUTO;
 }
-/* end - module */
 
 /* OK */
-/* start - Layout */
 .layout {
   background-color: #fff;
 }
-/* end - Layout */
 
-/* start - Module */
 .module {
   margin: 0 auto;
 }
 /* end - Module */
+
+/* start - RSS Feed */
+.rss-feed {
+  margin: 0 auto;
+}
+/* end - RSS Feed */
 ```
 
 ### 「0」のときの単位の省略
