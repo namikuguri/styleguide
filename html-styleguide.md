@@ -23,7 +23,8 @@
     11. フォームの cols , rows 属性
     12. アウトライン
     13. HTML のバリデート
-4. [参考文献](#reference)
+4. [[ オプション ] プリプロセッサ](#use-preprocessor)
+5. [参考文献](#reference)
 
 <a name="meta-rule"></a>
 ## 1. メタルール
@@ -311,8 +312,17 @@ Web での検証ツールは以下のものを使おう。
 
 Error は基本的に 0 に、warnings は.. まぁできるだけ減そう。
 
+<a name="use-preprocessor"></a>
+## 4. [ オプション ] プリプロセッサ
+これはやらなくてもいいけど、やったほうがいいこと。
+
+Slim を使うよ。  
+面倒な山カッコ（ `<` , `>` ）を書かなくて済むからね。
+
+- [Slim](http://slim-lang.com/)
+
 <a name="reference"></a>
-## 4. 参考文献
+## 5. 参考文献
 - [HTML Style Rules](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#HTML_Style_Rules)
 - [HTML Formatting Rules](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#HTML_Formatting_Rules)
 - [「Google HTML/CSS Style Guide」を適当に和訳してみた](http://re-dzine.net/2012/05/google-htmlcss-style-guide/)

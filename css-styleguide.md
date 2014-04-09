@@ -23,7 +23,9 @@
     8. CSS ハック
     9. 余計なモジュールの構造化は避ける
     10. CSS のバリデート
-4. [参考文献](#reference)
+4. [スタイルのプレビュー](#style-preview)
+5. [[ オプション ] プリプロセッサ](#use-preprocessor)
+6. [参考文献](#reference)
 
 <a name="meta-rule"></a>
 ## 1. メタルール
@@ -473,8 +475,82 @@ Web での検証ツールは以下のものを使おう。
 
 Error は基本的に 0 に、warnings は.. まぁできるだけ減そう。
 
+- [Sass](http://sass-lang.com/)
+
+<a name="style-preview"></a>
+## 4. スタイルのプレビュー
+StyleDocco ( node 環境 ) か KSS ( rails 環境 ) 、または Kalei ( node, rails が入っていない環境 ) を使おう。  
+これらを使うことでこんなメリットがある。
+
+- ID やクラスに振られるスタイルのプレビュー
+- ファイル内に含めるモジュールの定義 ( ファイルの先頭に記載 )
+
+SCSS で書いてて、スタイルのプレビューに StyleDocco を使ってる場合はこんなふうに書くよ。  
+（ SCSS では `// ` 形式のコメントはコンパイル後の CSS ファイルに書き出されない）
+
+テンプレート:
+
+```scss
+// # { ファイル名 }
+// { モジュールに関する注意事項、このファイルで取り扱うモジュールの役割など }
+
+...
+
+// # { モジュール名 }
+// ```
+// { スタイルが割り当てられる HTML コード }
+// ```
+
+.module {
+}
+```
+
+実際の例:
+
+```scss
+// # Base
+// ここではできるだけ User Agent Style に上書きするようなスタイルのみ書くように心がけましょう
+
+...
+
+// # Heading
+// ```
+// <h1>Heading Level 1</h1>
+// <h2>Heading Level 2</h2>
+// <h3>Heading Level 3</h3>
+// <h4>Heading Level 4</h4>
+// ```
+
+h1 {
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+h3 {
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+h4 {
+  font-size: 14px;
+  line-height: 1.35;
+}
+```
+
+<a name="use-preprocessor"></a>
+## 5. [ オプション ] プリプロセッサ
+これはやらなくてもいいけど、やったほうがいいこと。
+
+Sass(SCSS) を使うよ。  
+`Mixin` や `Partial` といった便利な機能があるからね。
+
 <a name="reference"></a>
-## 4. 参考文献
+## 6. 参考文献
 - [CSS Style Rules](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#CSS_Style_Rules)
 - [CSS Formatting Rules](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#CSS_Formatting_Rules)
 - [CSS Meta Rules](http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml#CSS_Meta_Rules)

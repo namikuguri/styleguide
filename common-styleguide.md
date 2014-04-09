@@ -9,7 +9,8 @@ HTML と CSS 、Javascript すべてに共通する決まり事。
     1. 意味のわかる名前をつける
     2. ID とクラスの命名スタイル
     3. 単語の省略
-5. [参考文献](#reference)
+5. [[ オプション ] Grunt 、タスクの簡略化](#simplification-of-task)
+6. [参考文献](#reference)
 
 <a name="delete-space"></a>
 ## 1. 無駄なスペースは削除
@@ -169,7 +170,27 @@ BEM について詳細が知りたい場合は公式サイトを読むのが一�
 - grid => g ( SMACSS のレイアウトカテゴリー内で使う場合に限る )
 - javascript => js ( Javascript で使うクラスとスタイルのクラスを分ける場合に限る )
 
+<a name="simplification-of-task"></a>
+# 5. [ オプション ] Grunt 、タスクの簡略化
+これはやらなくてもいいけど、やったほうがいいこと。
+
+タスクを登録しておけばコマンドを叩くことでコンパイル処理などが簡単に行えるようになるよ。  
+ドキュメントの豊富さから、今のところは Grunt を使おう。
+
+- [GRUNT](http://gruntjs.com/)
+
+Grunt がやってくれること:
+
+- Sass => CSS, HTML => Slim といったコンパイル処理の自動化
+- ファイルの結合化
+- ファイルサイズの縮小化（難読化）
+- HTML, CSS, JS のバリデーション
+- スタイルガイドの追加・更新
+- CSS のプロパティ列挙順の統一化
+- ライブリロード
+- CSS ベンダープレフィックスの付与
+
 <a name="reference"></a>
-## 5. 参考文献
+## 6. 参考文献
 - [「Google HTML/CSS Style Guide」を適当に和訳してみた](http://re-dzine.net/2012/05/google-htmlcss-style-guide/)
 - [GitHubのHTML/CSS Styleguideを適当に和訳してみた](http://re-dzine.net/2012/09/github-htmlcss-styleguide/)
