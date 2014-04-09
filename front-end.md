@@ -1,5 +1,5 @@
-# Common Styleguide
-HTML と CSS 、Javascript すべてに共通する決まり事。
+# Front-end Styleguide
+HTML と CSS 、Javascript に共通する決まり事。
 
 ## 目次
 1. [無駄なスペースは削除](#delete-space)
