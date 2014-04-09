@@ -14,17 +14,19 @@
     5. [小数点の頭の「0」の省略](#format-rule-omission-of-decimal-point)
     6. [URI 値の引用符の省略](#format-rule-quotation-of-uri)
 3. [コーディングルール](#coding-rule)
-    1. [ディレクトリ構成](#coding-rule-directory-structure)
-    2. [プロパティの列挙順](#coding-rule-property-order)
-    3. [ベンダープレフィックス](#coding-rule-vendor-prefix)
-    4. [カラーコード](#coding-rule-color-code)
-    5. [カラーコードの短縮](#coding-rule-color-code-shortening)
-    6. [px か em か](#coding-rule-px-vs-em)
-    7. [セレクタ](#coding-rule-selector)
-    8. [ショートハンドプロパティ](#coding-rule-shorthand)
-    9. [CSS ハック](#coding-rule-css-hack)
-    10. [余計なモジュールの構造化は避ける](#coding-rule-appropriate-structuring)
-    11. [CSS のバリデート](#coding-rule-validation)
+    1. [リセット CSS は使わない](#coding-rule-unuse-reset-css)
+    2. [ディレクトリ構成](#coding-rule-directory-structure)
+    3. [プロパティの列挙順](#coding-rule-property-order)
+    4. [ベンダープレフィックス](#coding-rule-vendor-prefix)
+    5. [カラーコード](#coding-rule-color-code)
+    6. [カラーコードの短縮](#coding-rule-color-code-shortening)
+    7. [px か em か](#coding-rule-px-vs-em)
+    8. [セレクタ](#coding-rule-selector)
+    9. [@import での読み込みはダメ](#coding-rule-import-loading)
+    10. [ショートハンドプロパティ](#coding-rule-shorthand)
+    11. [CSS ハック](#coding-rule-css-hack)
+    12. [余計なモジュールの構造化は避ける](#coding-rule-appropriate-structuring)
+    13. [CSS のバリデート](#coding-rule-validation)
 4. [スタイルのプレビュー](#style-preview)
 5. [[ オプション ] プリプロセッサ](#use-preprocessor)
 6. [参考文献](#reference)
@@ -217,6 +219,30 @@ URI 値の引用符は省略していいよ:
 <a name="coding-rule"></a>
 ## 3. コーディングルール
 
+<a name="coding-rule-unuse-reset-css"></a>
+### リセット CSS は使わない
+必要以上にスタイルシートを上書きしてしまう。そして、それがどこに、どのように上書きされたか把握しにくい。リセット CSS は使わないことにしておこう。
+
+その代わりに以下の手段を使ってブラウザのスタイルシートに上書きする:
+
+- ブラウザ間の誤差をなくして補正する [necolas/normalize.css](https://github.com/necolas/normalize.css/) を使う ( Sass を使ってる環境では [hail2u/normalize.scss](https://github.com/hail2u/normalize.scss) )
+- 自分で user agent stylesheets に上書きするスタイルを書く
+
+あと、自分で書くときは user agent stylesheets に上書きするようなスタイル**のみ**書くように心がけよう。
+
+```css
+/* NG */
+p {
+  margin: 0;
+}
+
+/* OK */
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+```
+
 <a name="coding-rule-directory-structure"></a>
 ### ディレクトリ構成
 SMACSS カテゴリーで分けてつくろう。
@@ -354,7 +380,7 @@ Sass なんかを使ってる場合はコンパイル時に HEX 形式に変換�
 
 <a name="coding-rule-selector"></a>
 ### セレクタ
-ユニバーサルセレクタ ( `*` ) は使用してはいけない。適用範囲が把握しにくいことや全てを走査して適用していくのでパフォーマンスが落ちるからね:
+ユニバーサルセレクタ ( `*` ) は使ってはいけない。適用範囲が把握しにくいことや全てを走査して適用していくのでパフォーマンスが落ちるから。
 
 ```css
 /* NG */
@@ -364,7 +390,7 @@ Sass なんかを使ってる場合はコンパイル時に HEX 形式に変換�
 }
 ```
 
-最優先セレクタ ( `!important` )は使用してはいけない。強制的に優先度を決めると他のものとの優先度の比較が難しくなるからね:
+最優先セレクタ ( `!important` )は使ってはいけない。強制的に優先度を決めると他のものとの優先度の比較が難しくなるから。
 
 ```css
 /* NG */
@@ -373,7 +399,7 @@ Sass なんかを使ってる場合はコンパイル時に HEX 形式に変換�
 }
 ```
 
-タイプセレクタは使用してはいけない。パフォーマンスの低下につながるから:
+タイプセレクタは使っしてはいけない。パフォーマンスの低下につながるし、不要に要素とクラスの結びつきを強めるから。
 
 ```css
 /* NG */
@@ -385,6 +411,16 @@ p.message {
 .message {
   margin-bottom: 20px;
 }
+```
+
+<a name="coding-rule-import-loading"></a>
+### @import での読み込みはダメ
+CSS の `@import` は使用してはいけない。ブラウザのパラレルロード（並行してコンテンツを読み込む仕組み）を無視して順番にファイルを読み込むため、パフォーマンスの低下につながるから。
+
+```css
+/* NG */
+@import url('list.css');  
+@import url('button.css');
 ```
 
 <a name="coding-rule-shorthand"></a>
