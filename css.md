@@ -599,8 +599,6 @@ Web での検証ツールは以下のものを使おう。
 
 Error は基本的に 0 に、warnings は.. まぁできるだけ減そう。
 
-- [Sass](http://sass-lang.com/)
-
 <a name="style-preview"></a>
 ## 4. スタイルのプレビュー
 StyleDocco ( node 環境 ) か KSS ( rails 環境 ) 、または Kalei ( node, rails が入っていない環境 ) を使おう。  
@@ -670,6 +668,8 @@ h4 {
 ## 5. [ オプション ] プリプロセッサ
 Sass(SCSS) を使うよ。  
 `Mixin` や `Partial` といった便利な機能があるからね。
+
+- [Sass](http://sass-lang.com/)
 
 <a name="reference"></a>
 ## 6. 参考文献
