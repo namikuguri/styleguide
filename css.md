@@ -154,7 +154,7 @@ CSS では階層に対してのインデントをしない。
 CSS のプロパティ、ID やクラス名は小文字のみで行おう。  
 コメントには大文字を使ってもいいよ。
 
-```html
+```css
 /* NG */
 .LAYOUT {
   background-color: #fff;
