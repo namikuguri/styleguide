@@ -154,7 +154,7 @@ CSS では階層に対してのインデントをしない。
 CSS のプロパティ、ID やクラス名は小文字のみで行おう。  
 コメントには大文字を使ってもいいよ。
 
-```html
+```css
 /* NG */
 .LAYOUT {
   background-color: #fff;
@@ -207,12 +207,17 @@ CSS のプロパティ、ID やクラス名は小文字のみで行おう。
 
 <a name="format-rule-quotation-of-uri"></a>
 ### URI 値の引用符の省略
-URI 値の引用符は省略していいよ:
+URI 値の引用符は省略して書こう:
 
 ```css
+/* NG */
+.format {
+  background-image: url("//lorempixel.com/200/200/");
+}
+
 /* OK */
 .format {
-  background-image: url(...);
+  background-image: url(//lorempixel.com/200/200/);
 }
 ```
 
@@ -345,13 +350,13 @@ SMACSS について詳細が知りたい場合は本が出てるからそれ見�
 }
 ```
 
-これは備考だけど、IE8 以下の対応を考えてるなら CSS3 から追加された RGBA, HSLA 形式は使わないほうがいい。サポートされてないからね。  
+これは余計な話かもしれないけど、IE8 以下の対応を考えてるなら CSS3 から追加された RGBA, HSLA 形式は使わないほうがいい。サポートされてないからね。  
 Sass なんかを使ってる場合はコンパイル時に HEX 形式に変換するといいよ。
 
 <a name="coding-rule-color-code-shortening"></a>
 ### カラーコードの短縮
 カラーコードが 3文字で短縮して表記できるものは 3文字で指定しよう。
-`#XXYYZZ` ( 例: #2200AA ) 形式のものは短縮して表記できるよ。
+`#XXYYZZ` ( 例: `#2200aa` ) 形式のものは短縮して表記できるよ。
 
 ```css
 /* NG */
@@ -399,7 +404,7 @@ Sass なんかを使ってる場合はコンパイル時に HEX 形式に変換�
 }
 ```
 
-タイプセレクタは使っしてはいけない。パフォーマンスの低下につながるし、不要に要素とクラスの結びつきを強めるから。
+タイプセレクタは使ってはいけない。パフォーマンスの低下につながるし、不要に要素とクラスの結びつきを強めるから。
 
 ```css
 /* NG */
@@ -599,8 +604,6 @@ Web での検証ツールは以下のものを使おう。
 
 Error は基本的に 0 に、warnings は.. まぁできるだけ減そう。
 
-- [Sass](http://sass-lang.com/)
-
 <a name="style-preview"></a>
 ## 4. スタイルのプレビュー
 StyleDocco ( node 環境 ) か KSS ( rails 環境 ) 、または Kalei ( node, rails が入っていない環境 ) を使おう。  
@@ -670,6 +673,8 @@ h4 {
 ## 5. [ オプション ] プリプロセッサ
 Sass(SCSS) を使うよ。  
 `Mixin` や `Partial` といった便利な機能があるからね。
+
+- [Sass](http://sass-lang.com/)
 
 <a name="reference"></a>
 ## 6. 参考文献
