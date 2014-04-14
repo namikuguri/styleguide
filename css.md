@@ -207,12 +207,17 @@ CSS のプロパティ、ID やクラス名は小文字のみで行おう。
 
 <a name="format-rule-quotation-of-uri"></a>
 ### URI 値の引用符の省略
-URI 値の引用符は省略していいよ:
+URI 値の引用符は省略して書こう:
 
 ```css
+/* NG */
+.format {
+  background-image: url("//lorempixel.com/200/200/");
+}
+
 /* OK */
 .format {
-  background-image: url(...);
+  background-image: url(//lorempixel.com/200/200/);
 }
 ```
 
